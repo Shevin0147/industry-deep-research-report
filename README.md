@@ -114,4 +114,4 @@ python .\industry-deep-research-report\scripts\validate_report.py `
 
 ## License
 
-当前仓库尚未附加开源许可证。首次版本建议先发布为 Private；转为 Public 前再确认许可证。
+本仓库当前未附加开源许可证。公开访问不代表授予复制、修改或再分发权利；如需开源使用，请在后续版本明确选择许可证。
