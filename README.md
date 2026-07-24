@@ -1,53 +1,90 @@
 # Industry Deep Research Report
 
-一个面向行业研究、市场进入、产品立项、商业投入与投资判断的 Codex Skill。
+[![Validate](https://github.com/wyh583/industry-deep-research-report/actions/workflows/validate.yml/badge.svg)](https://github.com/wyh583/industry-deep-research-report/actions/workflows/validate.yml)
+[![GitHub release](https://img.shields.io/github/v/release/wyh583/industry-deep-research-report)](https://github.com/wyh583/industry-deep-research-report/releases)
+[![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Codex Skill](https://img.shields.io/badge/Codex-Skill-111827)](./industry-deep-research-report/SKILL.md)
 
-它将公开资料转化为带证据边界、竞争性假设、市场模型和质量门禁的中文决策报告，而不只是汇总搜索结果。
+**English** · [简体中文](./README.zh-CN.md)
 
-## 核心能力
+A decision-grade Codex Skill for industry research, market entry, product validation, commercial investment, and investment diligence.
 
-- 固定的 10 章决策型报告结构
-- `quick`、`standard`、`deep` 三种研究深度
-- 竞争性假设、反证搜索与置信度记录
-- 结论—证据映射及来源独立性检查
-- 自上而下与自下而上的市场规模测算
-- 单位经济、盈亏平衡与敏感性分析
-- L1—L4 决策证据等级
-- 通用证据内核与条件化行业证据包
-- 自动质量门禁及结构化 `.research/` 档案
-- HTML、PDF 与 HTMLSlides 输出流程
+It turns public evidence into a concise Chinese decision report with competing hypotheses, source boundaries, reproducible market models, and automated quality gates—not a generic search summary.
 
-## 行业证据包
+## Why use it?
 
-首版包含：
+| Typical research agent | Industry Deep Research Report |
+|---|---|
+| Collects supporting links | Searches for supporting and falsifying evidence |
+| Counts webpages as independent sources | Tracks original-source lineage and independence |
+| Uses one market-size estimate | Requires top-down and bottom-up models when feasible |
+| Treats all industries alike | Loads conditional evidence rules for the selected industry |
+| Produces a narrative answer | Produces a 10-section report plus structured research artifacts |
+| Leaves confidence implicit | States supported decision level, gaps, and falsification conditions |
 
-- `consumer-retail`
-- `saas-ai`
-- `manufacturing`
-- `ecommerce-platform`
-- `healthcare`
-- `restaurant-local-service`
+## How it works
 
-每次研究加载一个主行业包，并可选择一个次行业包。无法可靠分类时回退到通用证据内核。
-
-## 仓库结构
-
-```text
-.
-├── README.md
-├── .gitignore
-└── industry-deep-research-report/
-    ├── SKILL.md
-    ├── agents/
-    ├── references/
-    └── scripts/
+```mermaid
+flowchart LR
+    A["Research brief"] --> B["Competing hypotheses"]
+    B --> C["Core evidence rules"]
+    C --> D["Primary industry pack"]
+    D --> E{"Secondary pack needed?"}
+    E -- Yes --> F["Merge stricter requirements"]
+    E -- No --> G["Evidence audit"]
+    F --> G
+    G --> H["Market and unit-economics models"]
+    H --> I["L1-L4 decision gate"]
+    I --> J["10-section report"]
+    J --> K["HTML / PDF / HTMLSlides"]
 ```
 
-## 安装
+## Core capabilities
 
-将仓库中的 `industry-deep-research-report` 子目录复制到 Codex skills 目录。
+- Fixed 10-section, decision-oriented report structure
+- `quick`, `standard`, and `deep` research modes
+- Competing hypotheses, counterevidence search, and confidence tracking
+- Claim-to-evidence mapping and original-source independence checks
+- Top-down and bottom-up market sizing
+- Unit economics, break-even, scenarios, and sensitivity analysis
+- L1-L4 evidence-backed decision levels
+- Universal evidence core plus conditional industry packs
+- Structured `.research/` artifacts and automated quality gates
+- HTML, PDF, and HTMLSlides delivery workflows
 
-Windows 示例：
+## Industry evidence packs
+
+| Pack | Typical use |
+|---|---|
+| `consumer-retail` | Consumer products, brands, and retail categories |
+| `saas-ai` | SaaS, AI products, developer tools, and digital services |
+| `manufacturing` | Equipment, components, factories, and industrial hardware |
+| `ecommerce-platform` | Marketplaces, cross-border ecommerce, and merchant platforms |
+| `healthcare` | Medical devices, drugs, clinical services, and digital health |
+| `restaurant-local-service` | Restaurants, stores, hospitality, and local services |
+
+Each run loads one primary pack and optionally one secondary pack. Uncertain classifications fall back to the universal evidence core instead of forcing a poor match.
+
+## Decision levels
+
+Research depth and decision authority are independent.
+
+| Level | Evidence may support |
+|---|---|
+| L1 | Continue or stop researching |
+| L2 | Start a low-cost MVP or validation |
+| L3 | Build a team and commit commercial resources |
+| L4 | Invest, acquire, or scale materially |
+
+If the requested decision exceeds the evidence, validation is blocked and the highest supported level is reported.
+
+## Install
+
+```bash
+git clone https://github.com/wyh583/industry-deep-research-report.git
+```
+
+Copy the nested `industry-deep-research-report` directory into your Codex skills directory.
 
 ```powershell
 $codexSkills = if ($env:CODEX_HOME) {
@@ -57,61 +94,67 @@ $codexSkills = if ($env:CODEX_HOME) {
 }
 
 Copy-Item `
-  -LiteralPath ".\industry-deep-research-report" `
+  -LiteralPath ".\industry-deep-research-report\industry-deep-research-report" `
   -Destination (Join-Path $codexSkills "industry-deep-research-report") `
   -Recurse `
   -Force
 ```
 
-如果你的 Codex skills 目录不同，请替换目标路径。
-
-## 使用
-
-在 Codex 中调用 Skill，并给出行业、地区、时间范围和决策目标，例如：
+## Use
 
 ```text
-使用 $industry-deep-research-report，
-分析美国宠物智能用品市场，判断是否值得启动低成本 MVP。
+Use $industry-deep-research-report to analyze the US smart pet products market.
+Use standard research depth and determine whether the evidence supports an L2 MVP.
 ```
 
-研究深度与决策等级相互独立：
+Mixed-industry example:
 
-| 等级 | 支持的决策 |
-|---|---|
-| L1 | 是否继续研究 |
-| L2 | 是否启动低成本 MVP 或验证 |
-| L3 | 是否组建团队并进行商业投入 |
-| L4 | 是否进行投资、并购或规模扩张 |
+```text
+Use $industry-deep-research-report to analyze AI medical imaging software.
+Load saas-ai as the primary evidence pack and healthcare as the secondary pack.
+```
 
-## 报告校验
+## Validate a report
 
-```powershell
-python .\industry-deep-research-report\scripts\validate_report.py `
-  --report <report.md> `
-  --research-dir <.research目录> `
+```bash
+python industry-deep-research-report/scripts/validate_report.py \
+  --report <report.md> \
+  --research-dir <.research-directory> \
   --mode standard
 ```
 
-- 没有阻断项时退出码为 `0`。
-- 存在阻断项时退出码为 `1`。
-- 详细结果会写入 `.research/validation.json`。
+- Exit `0`: no blocking issue.
+- Exit `1`: blocking evidence or model issue.
+- Results are written to `.research/validation.json`.
 
-## 运行要求
+See the sanitized [schema 1.1 brief example](./examples/brief.schema-1.1.json).
 
-- Python 3.9 或更高版本
-- 校验脚本仅使用 Python 标准库
-- PDF 导出需要本机可用的 Chrome 或 Edge
-- HTMLSlides 输出需要相应的 HTML Slides Skill
+## Repository layout
 
-## 数据与安全
+```text
+.
+├── README.md
+├── README.zh-CN.md
+├── CONTRIBUTING.md
+├── examples/
+└── industry-deep-research-report/
+    ├── SKILL.md
+    ├── agents/
+    ├── references/
+    └── scripts/
+```
 
-仓库不应包含：
+## Requirements
 
-- API Key、访问令牌或密码
-- 真实研究项目的 `.research/` 档案
-- 未脱敏的用户资料
-- 生成的报告、PDF、PPT 或 HTML 文件
+- Python 3.9+
+- Report validation uses the Python standard library only
+- PDF export requires a local Chrome or Edge installation
+- HTMLSlides delivery requires a compatible HTML Slides Skill
+
+## Contributing
+
+Issues and focused pull requests are welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## License
 
-本仓库当前未附加开源许可证。公开访问不代表授予复制、修改或再分发权利；如需开源使用，请在后续版本明确选择许可证。
+No open-source license is currently attached. Public access does not grant permission to copy, modify, or redistribute the project. A license should be selected before inviting broad reuse.
