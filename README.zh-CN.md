@@ -51,9 +51,33 @@
 
 ## 安装
 
-将仓库中的 `industry-deep-research-report` 子目录复制到 Codex skills 目录。
+### 直接下载安装包
 
-Windows 示例：
+从 [Latest Release](https://github.com/wyh583/industry-deep-research-report/releases/latest) 下载 `industry-deep-research-report.zip`。压缩包只包含可安装的 Skill，不包含 Git 元数据、测试和仓库说明文件。
+
+```powershell
+$codexSkills = if ($env:CODEX_HOME) {
+  Join-Path $env:CODEX_HOME "skills"
+} else {
+  Join-Path $env:USERPROFILE ".codex\skills"
+}
+$archive = Join-Path (Get-Location) "industry-deep-research-report.zip"
+
+Invoke-WebRequest `
+  "https://github.com/wyh583/industry-deep-research-report/releases/latest/download/industry-deep-research-report.zip" `
+  -OutFile $archive
+Expand-Archive -LiteralPath $archive -DestinationPath $codexSkills -Force
+```
+
+每个 Release 同时提供 SHA-256 校验文件。
+
+### 从源码安装
+
+```bash
+git clone https://github.com/wyh583/industry-deep-research-report.git
+```
+
+将仓库中的 `industry-deep-research-report` 子目录复制到 Codex skills 目录。
 
 ```powershell
 $codexSkills = if ($env:CODEX_HOME) {
@@ -63,14 +87,11 @@ $codexSkills = if ($env:CODEX_HOME) {
 }
 
 Copy-Item `
-  -LiteralPath ".\industry-deep-research-report" `
+  -LiteralPath ".\industry-deep-research-report\industry-deep-research-report" `
   -Destination (Join-Path $codexSkills "industry-deep-research-report") `
   -Recurse `
   -Force
 ```
-
-如果你的 Codex skills 目录不同，请替换目标路径。
-
 ## 使用
 
 在 Codex 中调用 Skill，并给出行业、地区、时间范围和决策目标，例如：

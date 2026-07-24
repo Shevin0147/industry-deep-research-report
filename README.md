@@ -80,6 +80,29 @@ If the requested decision exceeds the evidence, validation is blocked and the hi
 
 ## Install
 
+### Download the ready-to-install package
+
+Download `industry-deep-research-report.zip` from the [latest release](https://github.com/wyh583/industry-deep-research-report/releases/latest). The archive contains only the installable Skill directory—no repository metadata, tests, or documentation wrapper.
+
+PowerShell:
+
+```powershell
+$codexSkills = if ($env:CODEX_HOME) {
+  Join-Path $env:CODEX_HOME "skills"
+} else {
+  Join-Path $env:USERPROFILE ".codex\skills"
+}
+$archive = Join-Path (Get-Location) "industry-deep-research-report.zip"
+
+Invoke-WebRequest `
+  "https://github.com/wyh583/industry-deep-research-report/releases/latest/download/industry-deep-research-report.zip" `
+  -OutFile $archive
+Expand-Archive -LiteralPath $archive -DestinationPath $codexSkills -Force
+```
+
+A SHA-256 checksum is attached to every release.
+
+### Install from source
 ```bash
 git clone https://github.com/wyh583/industry-deep-research-report.git
 ```

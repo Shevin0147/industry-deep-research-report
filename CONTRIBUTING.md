@@ -15,7 +15,7 @@ Thank you for helping improve Industry Deep Research Report.
 1. Keep the 10-section report format and existing export interfaces compatible.
 2. Keep validator changes within the Python standard library.
 3. Do not commit real `.research/` archives, generated reports, credentials, or personal data.
-4. Run `python industry-deep-research-report/scripts/validate_report.py --help`.
+4. Run `python -m unittest discover -s tests -v`.
 5. Parse every JSON file in `references/industry-packs/`.
 6. Explain the decision problem, evidence rule, and compatibility impact.
 

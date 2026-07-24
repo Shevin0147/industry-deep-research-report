@@ -42,5 +42,21 @@ jobs:
           assert found == expected, f"Unexpected pack set: {found}"
           print(f"Validated {len(files)} industry packs")
           PY
+      - name: Run validator tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Build installable package
+        run: |
+          python scripts/package_skill.py
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          archive = Path("dist/industry-deep-research-report.zip")
+          with ZipFile(archive) as package:
+              names = package.namelist()
+          assert "industry-deep-research-report/SKILL.md" in names
+          assert all("__pycache__" not in name and ".research/" not in name for name in names)
+          print(f"Validated package with {len(names)} files")
+          PY
       - name: Check validator CLI
         run: python industry-deep-research-report/scripts/validate_report.py --help
