@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.1",
+  "topic": "Example market",
+  "scope": "Example product category",
+  "geography": "United States",
+  "time_range": "2024-2026",
+  "research_goal": "Decide whether to start a low-cost MVP",
+  "decision_questions": [
+    "Is there verified demand?",
+    "Which entry segment is most attractive?",
+    "What evidence supports commercialization?",
+    "What is the largest risk?",
+    "What should be validated first?"
+  ],
+  "mode": "standard",
+  "industry_family": "saas-ai",
+  "secondary_industry_family": null,
+  "evidence_packs": [
+    "saas-ai"
+  ],
+  "decision_level": "L2",
+  "routing_confidence": "high",
+  "routing_notes": []
+}

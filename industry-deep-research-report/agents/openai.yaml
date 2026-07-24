@@ -1,0 +1,8 @@
+interface:
+  display_name: "Industry Deep Research Report"
+  short_description: "生成 3 分钟可读的决策型中文行业报告，含来源审计、商业模型、可视化、PDF 和 HTMLSlides 导出。"
+  brand_color: "#1F6FEB"
+  default_prompt: "Use $industry-deep-research-report to research an industry, audit evidence, build a concise decision-grade Chinese report, and offer one-click PDF or HTMLSlides deck export."
+
+policy:
+  allow_implicit_invocation: true
